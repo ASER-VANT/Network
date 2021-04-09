@@ -15,6 +15,7 @@ import os
 os.system("apt install figlet")
 os.system("clear")
 os.system("figlet MAKRO")
+print("Bu Araç Kali Linuxdaki Network True False Sorununu Çözmektedir")
 
 kali = raw_input("Kali Linuxda ağ sorunu varmı[Y/n] ")
 
