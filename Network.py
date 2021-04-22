@@ -1,31 +1,46 @@
-#!usr/bin/env python
-# -*- coding: utf-8 -*-
+#!usr/bin/env python3
+#-*-coding:utf-8-*-
 
 import os
 
 os.system("apt install figlet")
 os.system("clear")
-os.system("figlet MAKRO")
+os.system("figlet NETWORK")
 
-#!usr/bin/env python
-# -*- coding: utf-8 -*-
+print("""
 
-import os
+Network Programına Hoş Geldiniz.
 
-os.system("apt install figlet")
-os.system("clear")
-os.system("figlet MAKRO")
-print("Bu Araç Kali Linuxdaki Network True False Sorununu Çözmektedir")
+1)Network True False Ayarı
+2)Local IP Sabitleme
+3)Sabit IP'yi Dinamik IP'ye Çevirme
+4)Çıkış
+""")
 
-kali = raw_input("Kali Linuxda ağ sorunu varmı[Y/n] ")
+soru = input("Seçim: ")
 
-if(kali=="y"):
-	dosya = open("/etc/NetworkManager/NetworkManager.conf","w")
-	dosya.write("""[main]
-plugins=ifupdown,keyfile
+if soru=="1":
+    dosya = open("/etc/NetworkManager/NetworkManager.conf","w")
+    dosya.write("[main]\nplugins=ifupdown,keyfile\n\n[ifupdown]\nmanaged=true")
+    print("Kali Network True Talse Ayarı Yapıldı")
 
-[ifupdown]
-managed=true""")
-	print("Network false/true ayarı yapılmıştır Güle Güle")
-elif(kali=="n"):
-	print("")
+elif soru=="2":
+    sor = input("Ağ Kartınızı Girin: ")
+    sor1 = input("Local IP Adresinizi Girin: ")
+    sor2 = input("Netmask Bilgisini Giriniz: ")
+    sor3 = input("Broadcast Bilgisini Giriniz: ")
+    sor4 = input("Geteway (modem IP) Bilgisini Giriniz: ")
+    dosya = open("/etc/network/interfaces","w")
+    dosya.write("# This file describes the network interfaces available on your system\n# and how to activate them. For more information, see interfaces(5).\n\nsource /etc/network/interfaces.d/*\n\n# The loopback network interface\nauto lo\niface lo inet loopback\n\niface " + sor + "inet static \n        address " + sor1 + "\n        netmask " + sor2 + "\n        boardcast " + sor3 + "\n        geteway " + sor4)
+    print("IP Adresiniz Sabitlendi Bundan Sonra Local IP adresiniz " + sor1 + " Olacaktır")
+
+elif soru=="3":
+    soru2 = input("IP Adresinizi Giriniz: ")
+    dosya = open("/etc/network/interfaces","w")
+    dosya.write("# This file describes the network interfaces available on your system\n# and how to activate them. For more information, see interfaces(5).\n\nsource /etc/network/interfaces.d/*\n\n# The loopback network interface\nauto lo\niface lo inet loopback")
+    print("Local IP Adresiniz Şuan Değişkendir IP Adresiniz " + soru2 + " Olacaktır")
+elif soru=="4":
+	print("Güle Güle")
+
+else:
+	print("Yanlış Seçim Yaptınız \nProgram Kapatıldı")
