@@ -5,7 +5,7 @@ import os
 
 os.system("apt install figlet")
 os.system("clear")
-os.system("figlet NETWORK")
+os.system("figlet MAKRO")
 
 print("""
 
