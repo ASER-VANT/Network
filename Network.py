@@ -65,7 +65,7 @@ elif soru=="4":
         print("Yanlış Seçim Program Kapatılıyor")
 
 elif soru=="5":
-    dosya = open("/etc/apt/soruces.list")
+    dosya = open("/etc/apt/soruces.list", "w")
     dosya.write("deb http://http.kali.org/kali kali-rolling main contrib non-free\n\ndeb-src http://http.kali.org/kali kali-rolling main contrib non-free")
     print("\nKali Linux Depo Güncelleme Tamamlandı")
 
